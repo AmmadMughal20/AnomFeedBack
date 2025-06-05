@@ -12,6 +12,7 @@ export async function GET()
         await dbConnect();
         const session = await getServerSession(authOptions);
         const user: User = session?.user as User;
+        console.log("Session user:", user);
         if (!session || !session.user)
         {
             return Response.json({

@@ -55,8 +55,11 @@ export const authOptions: NextAuthOptions = {
 
                         return {
                             id: user._id.toString(),
+                            _id: user._id.toString(),  // <-- important to match this key to jwt callback
                             email: user.email,
                             username: user.username,
+                            isVerified: user.isVerified,
+                            isAcceptingMessage: user.isAcceptingMessage,
                         };
                     } catch (error)
                     {
@@ -82,7 +85,7 @@ export const authOptions: NextAuthOptions = {
                 token._id = user._id?.toString();
                 token.isVerified = user.isVerified;
                 token.username = user.username;
-                token.isAcceptingMessages = user.isAcceptingMessage;
+                token.isAcceptingMessage = user.isAcceptingMessage;
             }
             return token;
         },
@@ -93,7 +96,7 @@ export const authOptions: NextAuthOptions = {
                 session.user._id = token._id as string;
                 session.user.isVerified = token.isVerified as boolean;
                 session.user.username = token.username as string;
-                session.user.isAcceptingMessages = token.isAcceptingMessages as boolean;
+                session.user.isAcceptingMessage = token.isAcceptingMessage as boolean;
             }
             return session;
         },
