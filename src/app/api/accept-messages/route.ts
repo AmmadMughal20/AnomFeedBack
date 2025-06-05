@@ -1,8 +1,7 @@
-import UserModel from "@/model/User";
 import dbConnect from "@/lib/dbContext";
+import UserModel from "@/model/User";
+import { getServerSession, User } from "next-auth";
 import { authOptions } from "../auth/[...nextauth]/options";
-import { getServerSession } from "next-auth";
-import { User } from "next-auth";
 
 export async function POST(request: Request)
 {
@@ -19,15 +18,10 @@ export async function POST(request: Request)
             }, { status: 401 });
         }
         const userId = user._id;
-        const { acceptMessages } = await request.json();
+        const result = await request.json();
+        console.log("Received data:", result);
+        const acceptMessages = result.acceptMessages;
 
-        if (!acceptMessages)
-        {
-            return Response.json({
-                success: false,
-                message: "Value is mission in parameter accepteMessages",
-            }, { status: 400 });
-        }
         if (typeof acceptMessages !== "boolean")
         {
             return Response.json({
@@ -65,7 +59,7 @@ export async function POST(request: Request)
 }
 
 
-export async function GET(request: Request)
+export async function GET()
 {
     try
     {

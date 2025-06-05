@@ -1,4 +1,4 @@
-import UserModel from "@/model/User";
+import UserModel, { MessageModel } from "@/model/User";
 import dbConnect from "@/lib/dbContext";
 import { Message } from "@/model/User";
 
@@ -34,6 +34,13 @@ export async function POST(request: Request)
             content,
             createdAt: new Date(),
         } as Message;
+
+        const saveMessage = new MessageModel({
+            content: newMessage.content,
+            createdAt: newMessage.createdAt,
+        });
+
+        await saveMessage.save();
 
         user.messages.push(newMessage);
 

@@ -1,11 +1,5 @@
-import UserModel from "@/model/User";
-import { z } from "zod";
 import dbConnect from "@/lib/dbContext";
-import { verifySchema } from "@/schemas/verifySchema";
-
-const VerifyCodeQuerySchema = z.object({
-    code: verifySchema,
-});
+import UserModel from "@/model/User";
 
 export async function POST(request: Request)
 {
@@ -13,6 +7,7 @@ export async function POST(request: Request)
     {
         await dbConnect();
         const { username, code } = await request.json();
+        console.log("Verifying code for username:", username, "with code:", code);
         if (!username || !code)
         {
             return new Response(JSON.stringify({ success: false, message: "Username and verification code are required" }), {

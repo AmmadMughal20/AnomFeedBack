@@ -1,7 +1,6 @@
 // Force Node.js runtime for streaming compatibility
 export const runtime = 'nodejs';
 
-import { NextRequest } from 'next/server';
 import { OpenAI } from 'openai';
 
 const openai = new OpenAI({
@@ -9,7 +8,7 @@ const openai = new OpenAI({
     apiKey: process.env.GROQ_API_KEY!,
 });
 
-export async function POST(req: NextRequest)
+export async function POST()
 {
     const prompt = `
 Create exactly 3 open-ended and engaging questions, numbered 1, 2, and 3, each on a new line.
@@ -51,6 +50,7 @@ Avoid personal and sensitive topics.
                     controller.close();
                 } catch (error)
                 {
+                    console.error('Streaming error:', error);
                     controller.error(error);
                 }
             },
@@ -61,7 +61,6 @@ Avoid personal and sensitive topics.
                 'Content-Type': 'text/plain; charset=utf-8',
                 'Cache-Control': 'no-cache',
                 'Connection': 'keep-alive',
-                'Transfer-Encoding': 'chunked',
             },
         });
     } catch (err)

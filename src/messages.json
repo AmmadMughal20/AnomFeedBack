@@ -1,0 +1,27 @@
+[
+    {
+        "title": "Welcome to the App",
+        "content": "Thank you for installing our app! We hope you find it useful.",
+        "recevived": "10 minutes ago"
+    },
+    {
+        "title": "New Feature Alert",
+        "content": "Check out our latest feature that allows you to customize your settings.",
+        "recevived": "2 hours ago"
+    },
+    {
+        "title": "Maintenance Update",
+        "content": "We will be performing maintenance on our servers tonight from 12 AM to 2 AM.",
+        "recevived": "1 day ago"
+    },
+    {
+        "title": "Feedback Request",
+        "content": "We would love to hear your feedback on the app. Please take a moment to fill out our survey.",
+        "recevived": "3 days ago"
+    },
+    {
+        "title": "Security Notice",
+        "content": "We have updated our security protocols to better protect your data.",
+        "recevived": "5 days ago"
+    }
+]
