@@ -19,7 +19,6 @@ export async function POST(request: Request)
         }
         const userId = user._id;
         const result = await request.json();
-        console.log("Received data:", result);
         const acceptMessages = result.acceptMessages;
 
         if (typeof acceptMessages !== "boolean")

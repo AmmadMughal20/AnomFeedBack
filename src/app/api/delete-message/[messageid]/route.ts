@@ -8,7 +8,7 @@ import { getServerSession } from "next-auth";
 
 interface SessionUser
 {
-    id: string;
+    _id: string;
     email: string;
     name?: string;
 }
@@ -38,8 +38,8 @@ export async function DELETE(req: NextRequest)
             );
         }
 
-        const userId = (session.user as SessionUser)?.id;
-
+        const userId = (session.user as SessionUser)?._id;
+        console.log(session.user, 'printing session user');
         if (!userId || !mongoose.Types.ObjectId.isValid(userId))
         {
             return NextResponse.json(

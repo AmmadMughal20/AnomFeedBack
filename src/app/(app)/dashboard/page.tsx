@@ -69,7 +69,13 @@ const Dashboard = () =>
                 toast.success("Messages refreshed successfully")
             } else
             {
-                toast.error(response.data.message || "Failed to fetch messages")
+                if (response.data.message)
+                {
+                    toast.error(response.data.message)
+                } else
+                {
+                    console.log("Failed to fetch messages")
+                }
             }
         } catch (error)
         {
